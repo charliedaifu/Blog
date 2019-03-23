@@ -1,0 +1,36 @@
+{% extends 'backend_layout.html' %}
+{% block contents %}
+    <div class="content-title">文章管理 / 文章列表</div>
+    <div class="content-add">文章名称
+        <input type="text"/>
+        <button type="button">添加</button>
+    </div>
+    <div class="type-title">
+        <i class="fa fa-table" aria-hidden="true"></i>
+        <span style="margin-left: 5px;">文章列表</span>
+    </div>
+    <div class="type-table">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th style="text-align: center;width: 100px;">选择</th>
+                    <th style="text-align: center;">文章名称</th>
+                    <th style="text-align: center;width: 300px;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in article_list %}
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td><a href="#">{{ item.title }}</a></td>
+                        <td>
+                            <a class="delete"><i class="fa fa-times" aria-hidden="true"></i> 删除</a>
+                            |
+                            <a class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

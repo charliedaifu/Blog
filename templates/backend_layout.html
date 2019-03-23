@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/backend.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome/css/font-awesome.css' %}"/>
+    {% block css %}
+    {% endblock %}
+    <style>
+        .menus .item .item-content a{
+            display: block;
+            padding: 3px 0 3px 36px;
+        }
+        .menus .item .item-content a:hover{
+            border-right: 3px solid #337ab7;
+        }
+    </style>
+</head>
+<body>
+<div class="pg-header">
+    <div class="logo left">EasyStack</div>
+    <div class="left-menu left">
+        <div class="item-set" style="margin-left: 10px;">
+            <a href="http://127.0.0.1:8000" class="item">博客园</a>
+        </div>
+        <div class="item-set">
+            <a href="/{{ request.session.username }}.html" class="item">首页</a>
+        </div>
+        <div class="item-set">
+            <a href="#" class="item">菜单一</a>
+            <div class="sets">
+                <a href="#">菜单一-1</a>
+                <a href="#">菜单一-2</a>
+                <a href="#">菜单一-3</a>
+            </div>
+        </div>
+        <div class="item-set">
+            <a href="#" class="item">菜单二</a>
+            <div class="sets">
+                <a href="#">菜单二-1</a>
+                <a href="#">菜单二-2</a>
+                <a href="#">菜单二-3</a>
+            </div>
+        </div>
+        <div class="item-set">
+            <a href="#" class="item">菜单三</a>
+            <div class="sets">
+                <a href="#">菜单三-1</a>
+                <a href="#">菜单三-2</a>
+                <a href="#">菜单三-3</a>
+            </div>
+        </div>
+    </div>
+    <div class="right-menu right">
+        <a href="#" class="item">消息
+            <i class="fa fa-bell-o" aria-hidden="true"></i>
+            <span class="badge bg-danger" style="background-color: orangered;margin-bottom: 3px;">4</span>
+        </a>
+        <a href="#" class="item">任务
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <span class="badge bg-danger" style="background-color: green;margin-bottom: 3px;">4</span>
+        </a>
+        <a href="#" class="item">通知
+            <i class="fa fa-commenting-o" aria-hidden="true"></i>
+            <span class="badge bg-danger" style="background-color: green;margin-bottom: 3px;">4</span>
+        </a>
+        <div class="avatar">
+            <a href="#" class="item" style="margin-right: 20px;">
+                <img src="/static/img/news/1.jpg"/>
+            </a>
+            <div class="sets">
+                <a href="#">个人信息</a>
+                <a href="#">头像</a>
+                <a href="#">退出</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pg-body">
+    <div class="menus">
+        <div class="item">
+            <div class="item-title">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <a href="/backend/article_management.html">文章管理</a>
+            </div>
+            <div class="item-content">
+                <a href="#">菜单一-1</a>
+                <a href="#">菜单一-2</a>
+                <a href="#">菜单一-3</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <a href="#">标签管理</a>
+            </div>
+            <div class="item-content hide">
+                <a href="#">菜单一-1</a>
+                <a href="#">菜单一-2</a>
+                <a href="#">菜单一-3</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <a href="/backend/category_management.html">分类管理</a>
+            </div>
+            <div class="item-content hide">
+                <a href="#">菜单一-1</a>
+                <a href="#">菜单一-2</a>
+                <a href="#">菜单一-3</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <a href="#">个人信息</a>
+            </div>
+            <div class="item-content hide">
+                <a href="#">菜单一-1</a>
+                <a href="#">菜单一-2</a>
+                <a href="#">菜单一-3</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="item-title">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <a href="/backend/trouble-list.html">报障管理</a>
+            </div>
+            <div class="item-content hide">
+                <a href="/backend/trouble-kill-list.html">处理报障单</a>
+                <a href="#">菜单一-2</a>
+                <a href="#">菜单一-3</a>
+            </div>
+        </div>
+    </div>
+    <div class="contents">
+        {% block contents %}{% endblock %}
+    </div>
+</div>
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<script>
+    $('.item .item-title').click(function () {
+        $(this).next().removeClass('hide');
+        $(this).parent().siblings().find('.item-content').addClass('hide');
+    })
+</script>
+{% block js %}
+{% endblock %}
+</body>
+</html>

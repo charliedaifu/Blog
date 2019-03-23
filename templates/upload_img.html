@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+</head>
+<body>
+<div id="comment"></div>
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<script src="{% static 'plugins/kindeditor/kindeditor-all.js' %}"></script>
+<script>
+    $(function () {
+            initKindEditor();
+        });
+        function initKindEditor() {
+            //不加varkind就是全局变量，加上就是函数内局部变量
+            kind = KindEditor.create('#comment',{
+                width:'80%',
+                height:'300px',
+                uploadJson:'/upload.html',
+            });
+        }
+</script>
+</body>
+</html>

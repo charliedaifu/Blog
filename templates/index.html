@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block body %}
+    <div class="pg-body">
+        <div class="body-left left">
+            <div class="nav-top-area">
+                <div class="nav-top-child left">
+                    <a href="#" class="active btn btn-default hotbtn">最热</a>
+                    <a href="#" class="newbtn">最新</a>
+                </div>
+            </div>
+            <div class="content-list">
+                {% for item in data %}
+                    <div class="item">
+                        <div class="news-img right">
+                            <img src="{{ item.img }}"/>
+                        </div>
+                        <div class="news-content">
+                            <div class="part1">
+                                <a href="http://127.0.0.1:8000/{{ request.session.suffix }}/{{ item.id }}.html" style="font-size: 22px;">{{ item.title }}</a>
+                            </div>
+                            <div style="color: black;">{{ item.summary }}</div>
+                            <div class="part2">
+                                <i class="fa fa-user-o " aria-hidden="true" style="cursor: text;"></i>
+                                <a href="#">{{ item.author }}</a>
+                                <span style="color: #403e3e;">发布于{{ item.pub_date|date:"Y-m-d H:i:s" }}</span>
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                <span>0</span>
+                                <i class="fa fa-thumbs-up " aria-hidden="true" onclick="checkClick(this);"></i>
+                                <span id="star-num">0</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="page-area">
+                <ul class="pagination">
+                    {{ page_str|safe }}
+                </ul>
+            </div>
+        </div>
+        <div class="body-right">
+            <div class="report-band">
+                <a href="http://www.12377.cn/">
+                    <img src="/static/img/report/report_harmful.png">
+                </a>
+                <a href="#" style="margin-left: 20px;">
+                    <img src="/static/img/report/report_children.png">
+                </a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading hot-title">
+                    <h3 class="panel-title">最热榜</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="hot-item">
+                        <div class="hot-points left">500</div>
+                        <a class="hot-content">
+                            【3名歹徒银行外劫持顾客 英勇保安1对3打到团灭】日前在美国银行圣何塞分行，
+                            一名准备进入银行办理业务的顾客遭到劫持，情况危急。银行的保安英勇地与三名
+                            歹徒展开搏斗，起先保安与歹徒展开肉搏，随后歹徒开枪，保安还击。一番惊心动
+                            魄的打斗过后，歹徒3人先后被保安的子弹击中，两人当场死亡，另一人则在送医后死亡。
+                        </a>
+                    </div>
+                    <div class="hot-item">
+                        <div class="hot-points left">482</div>
+                        <a class="hot-content">
+                            国社抓拍的这组照片水平确实高，简直就是自带剧情。左图是嫦娥四号
+                            探测器项目执行总监张熇在嫦娥四号平稳落月后激动到掩面哭泣的瞬间，
+                            右图是74岁的“嫦娥”系列月球探测器总指挥兼设计顾问叶培建院士，在
+                            落月后走到张熇身边紧紧握住她手的瞬间。画面仿佛在说，在探索未知的
+                            征途中我们薪火相传，前赴后继，绝不止步。
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div><img src="/static/img/news/15.jpg" class="show-img"/></div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        function checkClick(ths) {
+            var top = 59;
+            var left = 48;
+            var fontSize = 16;
+            var op = 1;
+            var obj = document.getElementById('star-num');
+            // var obj_text = obj.innerText;
+            var tag = document.createElement('span');
+            tag.style.position = 'absolute';
+            tag.style.top = top + 'px';
+            tag.style.left = left + 'px';
+            tag.style.fontSize = fontSize + 'px';
+            tag.style.opacity = op;
+            tag.innerText = '+1';
+            ths.parentElement.appendChild(tag);
+            //定时器
+            var interval = setInterval(function () {
+                top -= 10;
+                left += 10;
+                fontSize += 5;
+                op -= 0.1;
+                tag.style.top = top + 'px';
+                tag.style.left = left + 'px';
+                tag.style.fontSize = fontSize + 'px';
+                tag.style.opacity = op;
+                //当透明度为0时，删除定时器和tag
+                if (op <= 0) {
+                    clearInterval(interval);
+                    ths.parentElement.removeChild(tag);
+                    var new_num = parseInt(obj.innerText) + 1;
+                    obj.innerText = new_num;
+                }
+            }, 50);
+        }
+    </script>
+{% endblock %}

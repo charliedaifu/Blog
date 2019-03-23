@@ -1,0 +1,62 @@
+{% extends 'backend_layout.html' %}
+{% block css %}
+    <style>
+        .page-area{
+            overflow: hidden;
+            clear: both;
+            margin: 10px 0 10px 10px;
+        }
+    </style>
+{% endblock %}
+{% block contents %}
+    <div class="content-title" style="border-bottom: 1px dotted #DDDDDD;">
+        报障管理 / 报障列表
+    </div>
+    <div class="content-title" style="border-bottom: 1px dotted #DDDDDD;">
+        <a href="/backend/trouble-report.html">报障单处理报告</a>
+    </div>
+    <div class="type-title">
+        <i class="fa fa-table" aria-hidden="true"></i>
+        <span style="margin-left: 5px;">报障列表</span>
+        <div style="float: right;margin-right: 50px;">
+            <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+            <a href="/backend/trouble-create.html">创建报障单</a>
+        </div>
+    </div>
+    <div class="type-table">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th style="text-align: center;width: 100px;">选择</th>
+                    <th style="text-align: center;">报障标题</th>
+                    <th style="text-align: center;">状态</th>
+                    <th style="text-align: center;">创建时间</th>
+                    <th style="text-align: center;">处理人</th>
+                    <th style="text-align: center;width: 300px;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td>{{ item.title }}</td>
+{#                        自动去取status字段对应的choice中数字对应的文字信息#}
+                        <td>{{ item.get_status_display }}</td>
+                        <td>{{ item.ctime|date:"Y-m-d H:i:s" }}</td>
+                        <td>{{ item.processer.username }}</td>
+                        <td>
+                            <a class="delete"><i class="fa fa-times" aria-hidden="true"></i> 删除</a>
+                            |
+                            <a href="/backend/trouble-edit-{{ item.id }}.html" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="page-area">
+        <ul class="pagination">
+            {{ page_str|safe }}
+        </ul>
+    </div>
+{% endblock %}

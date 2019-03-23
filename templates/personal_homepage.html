@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/personal_home.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome/css/font-awesome.css' %}"/>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<div class="pg-header">
+    <div class="blog-title">
+        <a href="/{{ request.session.suffix }}.html">{{ request.session.title }}</a>
+    </div>
+    <div class="navigator">
+        <div class="navList">
+            <a class="nav-name" href="http://127.0.0.1:8000">博客园</a>
+            <a class="nav-name" href="/{{ request.session.suffix }}.html">首页</a>
+            <a class="nav-name" href="#">新随笔</a>
+            <a class="nav-name" href="/backend/article_management.html">管理</a>
+        </div>
+    </div>
+</div>
+<div class="pg-body">
+    <div class="body-band">
+        <div class="body-left">
+            <div class="left-content-band">
+                <div class="pub-title">公告</div>
+                <div class="pub-band">
+                    <div class="pub-news">昵称：<a href="http://127.0.0.1:8000/{{ request.session.suffix }}.html" style="color: #399ab2;">{{ username }}</a></div>
+                    <div class="pub-news">粉丝：<a href="#" style="color: black;">{{ fans_num }}</a></div>
+                    <div class="pub-news">关注：<a href="#" style="color: black;">{{ attention_num }}</a></div>
+                    <div class="pub-news">邮箱：charlie@126.com</div>
+                </div>
+                <div class="adage">渔得鱼心满意足，樵得樵眼笑眉舒。</div>
+                <div class="pub-title">分类</div>
+                <div class="pub-band">
+                    {% for item in article_category_list %}
+                        <div class="pub-news">
+                            <a href="http://127.0.0.1:8000/{{ request.session.suffix }}/category/{{ item.classification_id }}.html">{{ item.classification__name }}({{ item.number }})</a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="pub-title">时间</div>
+                <div class="pub-band">
+                    {% for item in pub_date_list %}
+                        <div class="pub-news">
+                            <a href="http://127.0.0.1:8000/{{ request.session.suffix }}/date/{{ item.2 }}.html">{{ item.2 }}({{ item.1 }})</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="body-right">
+            <div class="right-content-band">
+            {% block content-list %}
+                <div class="content-list">
+                    {% for item in data %}
+                        <div class="item">
+                            <div class="article-content">
+                                <div class="first-part">
+                                    <a style="font-size: 18px;" href="http://127.0.0.1:8000/{{ request.session.suffix }}/{{ item.id }}.html">{{ item.title }}</a>
+                                </div>
+                                <div style="color: black;">{{ item.summary }}<a href="http://127.0.0.1:8000/{{ request.session.suffix }}/{{ item.id }}.html">阅读全文</a></div>
+                                <div class="second-part">
+                                    <div style="text-align: right;">
+                                        <span>posted @ {{ item.pub_date|date:"Y-m-d H:i:s" }}</span>
+                                        <span>{{ item.author }}</span>
+                                        <span style="margin-right: -6px;">阅读（0）</span>
+                                        |
+                                        <a href="#">评论（0）</a>
+                                        <a href="#">编辑</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="page-area">
+                    <ul class="pagination">
+                        {{ page_str|safe }}
+                    </ul>
+                </div>
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="c1" class="backtop hide" onclick="backTop();">
+    <i class="fa fa-angle-double-up fa-4x" aria-hidden="true"></i>
+</div>
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<script src="{% static 'plugins/kindeditor/kindeditor-all.js' %}"></script>
+{% block js %}
+{% endblock %}
+<script>
+    function backTop() {
+        $('body,html').animate({scrollTop:0},10);
+    }
+    $(function () {
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 100) {
+                $("#c1").removeClass('hide');
+            } else {
+                $("#c1").addClass('hide');
+            }
+        })
+    });
+
+</script>
+</body>
+</html>

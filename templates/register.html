@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/account_styles.css' %}"/>
+</head>
+<body class="bg-color">
+<div class="register-band">
+    <div class="content-band">
+        <form action="/register.html" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="register-title">欢迎注册</div>
+            <div class="input-title">用户名</div>
+            <span>{{ obj.username }}</span>
+            <div class="error-text">* {{ obj.errors.username.0 }}</div>
+            <div class="input-title">邮箱</div>
+            <span>{{ obj.email }}</span>
+            <div class="error-text">* {{ obj.errors.email.0 }}</div>
+            <div class="input-title">密码</div>
+            <span>{{ obj.pwd }}</span>
+            <div class="error-text">* {{ obj.errors.pwd.0 }}</div>
+            <div class="input-title">密码确认</div>
+            <span>{{ obj.pwd_confirm }}</span>
+            <div class="error-text">* {{ obj.non_field_errors.0 }}</div>
+            <div style="text-align: center;"><input type="submit" value="注册" class="register-button"/></div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

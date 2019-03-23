@@ -1,0 +1,195 @@
+
+/*后台管理样式*/
+
+/*全局样式*/
+body{
+    margin: 0;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.hide{
+    display: none;
+}
+a{
+    cursor: pointer;
+}
+
+/*头部样式*/
+.pg-header{
+    height: 48px;
+    min-width: 1100px;
+    background-color: #2c6abf;
+    line-height: 48px;
+}
+.pg-header .logo{
+    font-size: 26px;
+    color:whitesmoke;
+    width: 200px;
+    background-color: #064396;
+    text-align: center;
+    font-weight: 600;
+}
+.pg-header .left-menu .item,.pg-header .right-menu .item{
+    color: white;
+    font-size: 15px;
+    padding: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    height: 48px;
+}
+.pg-header .left-menu a:hover,.pg-header .right-menu a:hover{
+    background-color: #064396;
+}
+.pg-header .left-menu .item-set{
+    display: inline-block;
+    position: relative;
+}
+.pg-header .left-menu .item-set .sets{
+    position: absolute;
+    width: 65px;
+    background-color: #6ba4e8;
+    display: none;
+    z-index: 1000;
+}
+.pg-header .left-menu .item-set .sets a{
+    display: block;
+    line-height: 35px;
+    color: whitesmoke;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+}
+/*鼠标放在以及菜单上时，显示下面的子菜单*/
+.pg-header .left-menu .item-set:hover .sets{
+    display: block;
+}
+.right-menu .avatar{
+    display: inline-block;
+    position: relative;
+}
+.right-menu .avatar .item img{
+    width: 42px;
+    height: 42px;
+    margin-bottom: 3px;
+    border-radius: 50%;
+}
+.right-menu .avatar .sets{
+    position: absolute;
+    width: 65px;
+    background-color: #6ba4e8;
+    display: none;
+    z-index: 1000;
+}
+.right-menu .avatar:hover .sets{
+    display: block;
+}
+.right-menu .avatar .sets a{
+    display: block;
+    line-height: 35px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    background-color: #DDDDDD;
+}
+.right-menu .avatar .sets a:hover{
+    background-color: whitesmoke;
+}
+/*主体菜单*/
+.pg-body .menus{
+    width: 200px;
+    position: absolute;
+    top: 48px;    /* 自己跟自己定位，离左边为0，下边为0，就是紧靠左边和下边，上边紧靠头部菜单*/
+    bottom: 0;
+    left: 0;
+    border: 1px solid #DDDDDD;
+    margin-top: 5px;
+}
+.pg-body .menus .item{
+    border-bottom: 1px dotted #DDDDDD;
+}
+.menus .item .item-title{
+    padding: 8px;
+    font-size: 18px;
+    color: #337ab7;
+    margin-left: 10px;
+}
+
+
+
+/*主体内容*/
+.pg-body .contents{
+    position: absolute;
+    top:48px;
+    right: 0;
+    bottom: 0;
+    left: 210px;
+    overflow: auto;   /* 右侧内容如果高出屏幕高度，会自动出现滚动条，滚动时头部和左侧菜单均不动*/
+    border: 1px solid #DDDDDD;
+    margin-top: 5px;
+}
+.contents .content-title{
+    height: 40px;
+    background-color: #f3f3f3;
+    font-size: 16px;
+    line-height: 40px;
+    padding-left: 20px;
+    color: #337ab7;
+}
+.pg-body .contents .content-add{
+    padding: 30px 20px;
+    font-size: 16px;
+}
+.pg-body .contents .content-add input{
+    width: 300px;
+    margin-left: 20px;
+    height: 30px;
+}
+.pg-body .contents .content-add button{
+    border: none;
+    background-color: #337ab7;
+    color: white;
+    border-radius: 3px;
+    width: 60px;
+    height: 30px;
+    margin-left: 20px;
+}
+.pg-body .contents .type-title{
+    height: 40px;
+    background-color: #f3f3f3;
+    font-size: 16px;
+    line-height: 40px;
+    padding-left: 20px;
+    color: #337ab7;
+}
+.pg-body .contents .type-table table{
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #DDDDDD;
+
+}
+.contents .type-table table th,.contents .type-table table td{
+    height: 40px;
+}
+.contents .type-table table a.edit{
+    color: white;
+    font-size: 14px;
+    background-color: blue;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+.contents .type-table table a.delete{
+    color: white;
+    font-size: 14px;
+    background-color: red;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+}

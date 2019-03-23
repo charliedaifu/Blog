@@ -1,0 +1,49 @@
+.body-right .right-content-band .essay-title{
+    font-size: 20px;
+    color: #399ab2;
+    border-bottom: 1px solid #DDDDDD;
+    padding: 6px 0;
+}
+.body-right .right-content-band .essay-content{
+    font-size: 16px;
+    padding: 10px 0;
+}
+.body-right .right-content-band .comment-title{
+    padding: 10px 0;
+}
+.body-right .right-content-band .clearfix{
+    padding: 15px 0;
+}
+.body-right .right-content-band .praise-frame {
+    width: 46px;
+    height: 52px;
+    background: url(/static/img/icon/praise.gif) no-repeat;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 5px;
+    float: left;
+}
+.right-content-band .praise-frame .praise {
+    font-size: 14px;
+    color: #075db3;
+    font-family: Verdana;
+}
+.body-right .right-content-band .tread-frame {
+    margin-left: 20px;
+    width: 46px;
+    height: 52px;
+    background: url(/static/img/icon/tread.gif) no-repeat;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 5px;
+    float: left;
+}
+.right-content-band .tread-frame .tread {
+    font-size: 14px;
+    color: #075db3;
+    font-family: Verdana;
+}
+.body-right .right-content-band .button{
+    padding: 10px 0;
+}
+

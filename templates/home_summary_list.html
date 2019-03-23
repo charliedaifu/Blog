@@ -1,0 +1,23 @@
+{% extends 'personal_homepage.html' %}
+{% block content-list %}
+    {% for item in article_list %}
+        <div class="item">
+            <div class="article-content">
+                <div class="first-part">
+                    <a href="http://127.0.0.1:8000/{{ request.session.suffix }}/{{ item.id }}.html" style="font-size: 18px;">{{ item.title }}</a>
+                </div>
+                <div style="color: black;">{{ item.summary }}<a href="http://127.0.0.1:8000/{{ request.session.suffix }}/{{ item.id }}.html">阅读全文</a></div>
+                <div class="second-part">
+                    <div style="text-align: right;">
+                        <span>posted @ {{ item.pub_date|date:"Y-m-d H:i:s" }}</span>
+                        <span>{{ item.author }}</span>
+                        <span style="margin-right: -6px;">阅读（0）</span>
+                        |
+                        <a href="#">评论（0）</a>
+                        <a href="#">编辑</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

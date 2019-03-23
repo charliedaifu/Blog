@@ -1,0 +1,44 @@
+{% extends 'backend_layout.html' %}
+{% block css %}
+    {% load staticfiles %}
+    <style>
+        .kind-content{
+            width: 80%;
+            min-height: 500px;
+        }
+    </style>
+{% endblock %}
+{% block contents %}
+    <div class="content-title" style="border-bottom: 1px dotted #DDDDDD;">
+        报障管理 / 修改报障单
+    </div>
+    <div style="margin: 20px 0 0 20px;">
+        <form method="POST" action="/backend/trouble-edit-{{ nid }}.html" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">
+                    标题<span>{{ form.title.error.0 }}</span>
+                </label>
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                <label for="detail">内容<span>{{ form.detail.error.0 }}</span></label>
+                {{ form.detail }}
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="保存"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'plugins/kindeditor/kindeditor-all.js' %}"></script>
+    <script src="{% static 'plugins/kindeditor/lang/zh-CN.js' %}"></script>
+    <script>
+        KindEditor.ready(function (K) {
+            var editor = K.create('#detail',{
+                resizeType:1,
+            });
+        });
+    </script>
+{% endblock %}

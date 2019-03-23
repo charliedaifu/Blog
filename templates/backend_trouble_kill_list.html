@@ -1,0 +1,45 @@
+{% extends 'backend_layout.html' %}
+{% block contents %}
+    <div class="content-title">
+        报障管理 / 处理报障列表
+    </div>
+    <div class="type-table">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th style="text-align: center;width: 100px;">选择</th>
+                    <th style="text-align: center;">报障标题</th>
+                    <th style="text-align: center;">状态</th>
+                    <th style="text-align: center;">创建时间</th>
+                    <th style="text-align: center;">创建人</th>
+                    <th style="text-align: center;width: 300px;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in result %}
+                    <tr>
+                        <td><input type="checkbox"/></td>
+                        <td><a href="/backend/trouble-edit-{{ item.id }}.html">{{ item.title }}</a></td>
+                        <td>{{ item.get_status_display }}</td>
+                        <td>{{ item.ctime|date:"Y-m-d H:i:s" }}</td>
+                        <td>{{ item.user.username }}</td>
+                        <td>
+                            <a href="/backend/trouble-kill-{{ item.id }}.html" class="edit" style="background-color: green;">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                {% if item.status == 1 %}
+                                    抢单
+                                {% elif item.status == 2 %}
+                                    处理订单
+                                {% else %}
+                                    解决方案
+                                {% endif %}
+                            </a>
+                            |
+                            <a href="#" class="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>编辑</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

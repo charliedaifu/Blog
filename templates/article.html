@@ -1,0 +1,41 @@
+{% extends 'personal_homepage.html' %}
+{% block head %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/article_style.css' %}"/>
+{% endblock %}
+{% block content-list %}
+    <div class="essay-title">{{ article_obj.title }}</div>
+    <div class="essay-content">{{ article_content.content }}</div>
+    <div class="clearfix">
+        <div class="praise-frame">
+            <span class="praise" id="praise">0</span>
+        </div>
+        <div class="tread-frame">
+            <span class="tread" id="tread">0</span>
+        </div>
+    </div>
+
+    <div class="comment-title">
+        <i class="fa fa-commenting-o" aria-hidden="true" style="color: #399ab2"></i>
+        <span>发表评论</span>
+    </div>
+    <div id="comment"></div>
+    <div class="button"><input type="button" value="提交评论"></div>
+{% endblock %}
+{% block js %}
+    <script>
+        $(function () {
+            initKindEditor();
+        });
+        var kind = null;
+        function initKindEditor() {
+            //不加varkind就是全局变量，加上就是函数内局部变量
+            kind = KindEditor.create('#comment',{
+                width:'80%',
+                height:'300px',
+                uploadJson:'/upload.html',
+            });
+        }
+        //通过kindeditor内部函数，kind.html()就可以获取输入框内的全部内容
+    </script>
+{% endblock %}
